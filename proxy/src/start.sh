@@ -7,6 +7,15 @@
 set -e
 
 CONFIG_FILE="/usr/local/etc/haproxy/haproxy.cfg"
+STARTUP_HOOK="/usr/local/etc/haproxy/startup-hook.sh"
+
+# Source an optional deployment-provided hook before starting HAProxy. Sourcing
+# lets the hook export environment variables used by the HAProxy configuration.
+if [[ -r "$STARTUP_HOOK" ]]; then
+    echo "[PROXYHOST] Running configured startup hook"
+    # shellcheck source=/dev/null
+    source "$STARTUP_HOOK"
+fi
 
 # Generate a new certificate for the HTTPS port on each startup.
 pushd /home/haproxy/certs

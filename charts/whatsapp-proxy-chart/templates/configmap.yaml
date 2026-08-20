@@ -11,3 +11,7 @@ metadata:
 data:
   haproxy.cfg: |
     {{- tpl .Values.haproxyConfig . | nindent 4 }}
+  {{- with .Values.startupHook }}
+  startup-hook.sh: |
+    {{- tpl . $ | nindent 4 }}
+  {{- end }}

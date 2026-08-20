@@ -101,6 +101,11 @@ tolerations: []
 
 affinity: {}
 
+# Optional shell fragment sourced by the container entrypoint before HAProxy
+# starts. Because it is sourced, it may export environment variables for use
+# by the HAProxy configuration. A nonzero return prevents HAProxy from starting.
+startupHook: ""
+
 # Extra volumes to attach to the pod, rendered as-is into the Deployment's
 # spec.template.spec.volumes
 extraVolumes: []
