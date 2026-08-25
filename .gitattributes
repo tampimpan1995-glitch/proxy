@@ -1,2 +1,0 @@
-# Explicitly declare sh files to always be normalized and have LF file endings
-*.sh text eol=lf
